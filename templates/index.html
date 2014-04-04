@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Text editor using the Kloudless SDK</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='ace-noconflict.min.js') }}"></script>
+    <script type="text/javascript" src="https://kloudless-static-assets.s3-us-west-2.amazonaws.com/p/platform/sdk/kloudless.authenticator.v0.1.js"></script>
+  </head>
+  <body>
+    <div id="editor">Example Text file.
+This file can be saved to cloud storage by clicking the Save button.</div>
+    <div id="save-row">
+      <p>This is a text editor that uses the Kloudless SDK to save files to cloud storage.</p>
+      <input id="save-button" type="button" value="Save"/>
+      <div id="save-status"></div>
+    </div>
+    <script type="text/javascript">
+      var appId = "{{ app_id }}";
+    </script>
+    <script type="text/javascript" src="{{ url_for('static', filename='editor.js') }}"></script>
+  </body>
+</html>

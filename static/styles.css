@@ -1,0 +1,42 @@
+#editor {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+#save-row > * {
+  display: inline;
+}
+#save-button {
+  -webkit-appearance: button;
+  cursor: pointer;
+  height: 40px;
+  padding: 0 20px;
+  margin: 0 20px;
+  font-size: 14px;
+  background: #3fd183;
+  color: #fff;
+  border: 1px solid #3fd183;
+  outline: none;
+  text-shadown: rgba(0, 0, 0, 0.2) 0 1px 0;
+
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 2px 0, rgba(255, 255, 255, 0.4) 0 1px 0 inset;
+  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 2px 0, rgba(255, 255, 255, 0.4) 0 1px 0 inset;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 2px 0, rgba(255, 255, 255, 0.4) 0 1px 0 inset;
+}
+#save-button:hover, #save-button:focus {
+  background: #39bd77;
+  border: 1px solid #39bd77;
+}
+#save-button:active {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 0px, rgba(0, 0, 0, 0.2) 0px 1px 0px inset;
+  -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 0px, rgba(0, 0, 0, 0.2) 0px 1px 0px inset;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 0px, rgba(0, 0, 0, 0.2) 0px 1px 0px inset;
+}
