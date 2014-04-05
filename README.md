@@ -9,3 +9,10 @@ Libraries used:
 * [ACE Text Editor](http://ace.c9.io/)
 * [Kloudless](https://developers.kloudless.com/)
 
+## Usage
+
+Clone the repository, install requirements and run `editor.py` to see usage information:
+```bash
+$ pip install -r requirements.txt
+$ python editor.py
+```
