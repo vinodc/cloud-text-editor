@@ -35,8 +35,9 @@ def save_file(account_id, file_data):
     # Create the folder in case it doesn't exist.
     account = kloudless.Account(id=account_id)
 
-    folder = account.folders.create(name="Cloud File Editor Sample App",
-                                    parent_id='root')
+    folder = account.folders.create(data={
+        "name": "Cloud File Editor Sample App",
+        "parent_id": "root"})
 
     f = account.files.create(file_name='test.txt', parent_id=folder.id,
                              file_data=file_data)
