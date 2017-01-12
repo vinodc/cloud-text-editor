@@ -11,6 +11,9 @@ Libraries used:
 
 ## Usage
 
+Add `localhost:5000` to the list of Trusted Domains in your
+[App Details page](https://developers.kloudless.com/applications/*/details).
+
 Clone the repository, install requirements and run `editor.py` to see usage information:
 ```bash
 $ pip install -r requirements.txt

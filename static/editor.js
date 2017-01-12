@@ -1,25 +1,26 @@
 $(function(){
     var editor = ace.edit("editor");
 
-    var accountId;
-    var service;
+    var result;
 
     $("#save-button").click(function() {
-        if (accountId) {
+        if (result && result.account && result.account.id) {
             saveFile();
         }
     });
 
     Kloudless.authenticator(
         $("#save-button"),
-        {'app_id': appId},
-        function(err, result){
-            if (err) {
-                $("#save-status").text("An error occured! " + err)
+        {
+            'client_id': appId,
+            'scope': 'all.storage',
+        },
+        function(res){
+            result = res;
+            if (result.error) {
+                $("#save-status").text("An error occured: " + result.error);
                 return;
             }
-            accountId = result.id;
-            service = result.service;
             Kloudless.stop($("#save-button"));
             saveFile();
         });
@@ -30,13 +31,16 @@ $(function(){
         var file_data = editor.getValue();
         var jqXHR = $.post(
             "/",
-            {'account': accountId,
-             'file_data': file_data})
-            .done(function(data, textStatus, jqXHR) {
-                $("#save-status").text("Saved!")
+            {
+                'account': result.account.id,
+                'token': result.access_token,
+                'file_data': file_data
+            }).done(function(data, textStatus, jqXHR) {
+                $("#save-status").text(
+                    "Saved to " + result.account.service + " account '" +
+                        result.account.account + "'!")
                     .delay(5000).text(saveText());
-            })
-            .fail(function() {
+            }).fail(function() {
                 $("#save-status").text("An error occured.")
                     .delay(5000).text(saveText());
             });

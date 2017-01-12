@@ -11,9 +11,8 @@ import os
 
 usage_text = (
     "\nUsage:\n"
-    "    $ KLOUDLESS_API_KEY=api_key KLOUDLESS_APP_ID=app_id python editor.py\n"
-    "substituting 'api_key' with your Kloudless API Key and 'app_id'\n"
-    "with your Kloudless App ID.\n\n"
+    "    $ KLOUDLESS_APP_ID=app_id python editor.py\n"
+    "substituting 'app_id' with your Kloudless App ID.\n\n"
     "You can get these at https://developers.kloudless.com/.\n"
     "Please reach out to us at support@kloudless.com if you have any "
     "questions.\n")
@@ -29,9 +28,12 @@ def index():
         return render_template('index.html',
                                app_id=os.environ['KLOUDLESS_APP_ID'])
     else:
-        return save_file(request.form['account'], request.form['file_data'])
+        return save_file(request.form['account'], request.form['file_data'],
+                         request.form['token'])
 
-def save_file(account_id, file_data):
+def save_file(account_id, file_data, token):
+    kloudless.configure(token=token)
+
     # Create the folder in case it doesn't exist.
     account = kloudless.Account(id=account_id)
 
@@ -45,12 +47,10 @@ def save_file(account_id, file_data):
     return jsonify(file_id=f.id)
 
 def main():
-    for k in ['KLOUDLESS_API_KEY', 'KLOUDLESS_APP_ID']:
+    for k in ['KLOUDLESS_APP_ID']:
         if not os.environ.get(k):
             print usage_text
             return
-
-    kloudless.configure(api_key=os.environ['KLOUDLESS_API_KEY'])
 
     if os.environ.get('KLOUDLESS_BASE_URL'):
         kloudless.configure(base_url=os.environ['KLOUDLESS_BASE_URL'])
